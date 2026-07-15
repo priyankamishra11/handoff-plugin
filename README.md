@@ -8,7 +8,7 @@ A Claude Code skill that captures your full session into a structured handoff do
 2. Writes a timestamped markdown file to `~/handoffs/`
 3. Tells you exactly where the file is and what to do next
 
-Run it manually any time with `/handoff`, or wire it to fire automatically when context gets full (see Auto-trigger below).
+Run it manually any time with `/handoff`, or wire it to fire automatically when context gets full (see Auto-trigger below). Resume any saved session with `/resume-handoff`.
 
 ---
 
@@ -27,8 +27,12 @@ npm install -g @anthropic-ai/claude-code
 ### Option A — Global (available in every Claude Code session)
 
 ```bash
+# Install both skills
 curl -o ~/.claude/commands/handoff.md \
   https://raw.githubusercontent.com/priyankamishra11/handoff-plugin/main/.claude/commands/handoff.md
+
+curl -o ~/.claude/commands/resume-handoff.md \
+  https://raw.githubusercontent.com/priyankamishra11/handoff-plugin/main/.claude/commands/resume-handoff.md
 ```
 
 ### Option B — Project-level (only inside this repo)
@@ -43,11 +47,13 @@ claude
 
 ## Usage
 
+### Save a handoff
+
 ```
 /handoff
 ```
 
-No arguments needed. The skill reads the current session and writes a timestamped file to `~/handoffs/`.
+No arguments. Reads the current session and writes a timestamped file to `~/handoffs/`.
 
 **Output file:** `~/handoffs/handoff_YYYY-MM-DD_HH-MM.md`
 
@@ -62,9 +68,21 @@ Each file contains:
 
 ---
 
+### Resume from a handoff
+
+In a new Claude Code session:
+
+```
+/resume-handoff ~/handoffs/handoff_2026-07-16_10-30.md
+```
+
+Claude reads the file and shows you exactly where you left off. Say "go" to continue.
+
+---
+
 ## Auto-trigger (recommended)
 
-Add this section to your `CLAUDE.md` to make Claude fire `/handoff` automatically when context is ~70% full:
+Add this section to your `CLAUDE.md` to make Claude create a handoff automatically when context is ~70% full:
 
 ```markdown
 ## Context Monitoring (non-negotiable)
@@ -89,18 +107,6 @@ Surface this warning and trigger as early as possible — when context is roughl
 70% full — so the handoff doc captures the complete session, not a truncated one.
 Do not wait until compaction starts. Do not ask permission. Act immediately.
 ```
-
----
-
-## Resuming from a handoff
-
-Start a new Claude Code session and say:
-
-```
-Resume from handoff: ~/handoffs/handoff_2026-07-16_10-30.md
-```
-
-Claude will read the file and pick up exactly where you left off.
 
 ---
 
