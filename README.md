@@ -104,7 +104,7 @@ details — do the following immediately, without waiting for me to ask:
    Step 5 of handoff.md so the user knows what to do next.
 
 Surface this warning and trigger as early as possible — when context is roughly
-70% full — so the handoff doc captures the complete session, not a truncated one.
+50% full — so the handoff doc captures the complete session, not a truncated one.
 Do not wait until compaction starts. Do not ask permission. Act immediately.
 ```
 
