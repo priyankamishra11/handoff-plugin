@@ -106,6 +106,11 @@ details — do the following immediately, without waiting for me to ask:
 Surface this warning and trigger as early as possible — when context is roughly
 50% full — so the handoff doc captures the complete session, not a truncated one.
 Do not wait until compaction starts. Do not ask permission. Act immediately.
+
+**Fire once per session only.** Before triggering, check if the text
+"⚠️ Context is almost full" already appears earlier in this conversation.
+If it does, the handoff has already been created — do not trigger again regardless
+of context level. The user has been warned and the doc is saved.
 ```
 
 ---
